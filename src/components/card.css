@@ -1,0 +1,13 @@
+.arrows-visible .arrow-left,
+.arrows-visible .arrow-right {
+  display: block;
+}
+.relative .arrow {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  .relative:hover .arrow {
+    opacity: 1;
+  }
+  
