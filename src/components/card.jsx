@@ -96,7 +96,7 @@ const Card = () => {
         <div className='flex justify-center items-center'>
             <div className='grid grid-cols-4 gap-14 '>
                 {rooms.map((room, index) => (
-                    <div className='border-solid rounded-lg mt-[50px] w-[300px] '>
+                    <div className='border-solid rounded-lg mt-[50px] w-[300px] card-room'>
                         <div key={index} className="relative h-64 w-full" onMouseEnter={() => setIsHovered((prev) => { const updatedIsHovered = [...prev]; updatedIsHovered[index] = true; return updatedIsHovered; })}
                             onMouseLeave={() => setIsHovered((prev) => { const updatedIsHovered = [...prev]; updatedIsHovered[index] = false; return updatedIsHovered; })}>
                             {room.image && room.image.length > 0 && (
@@ -106,12 +106,12 @@ const Card = () => {
                                 className="rounded-x-lg h-full w-full object-cover transition-transform duration-300 transform hover:scale-110"
                                 />
                             )}
-                            {isHovered[index] && (
+                            {isHovered[index] && room.image && room.image.length > 1 && (
                                 <Arrow direction="left" onClick={() => handlePrevImage(index)} />
                                 )}
-                            {isHovered[index] && (
+                            {isHovered[index] && room.image && room.image.length > 1 && (
                                 <Arrow direction="right" onClick={() => handleNextImage(index)} />
-                            )}
+                            )}  
                         </div>
                         <div className='mt-2 pb-4'>
                             <h1 className='text-center font-bold'>No.{room.number}</h1>

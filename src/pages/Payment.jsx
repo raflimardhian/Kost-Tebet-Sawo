@@ -6,6 +6,7 @@ import logo from "../assets/logo navbar.png";
 import { useAuth } from '../constants/AuthContext';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Button } from "primereact/button";
 
 const Payment = () =>{
     const [rooms, setRooms] = useState([]);
@@ -13,11 +14,11 @@ const Payment = () =>{
     const location = useLocation();
     const roomId = new URLSearchParams(location.search).get('id');
     const token = useAuth().token;
+    const [isLoading, setIsLoading] = useState(false);
     function formatRupiah(amount) {
         return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(amount);
     }
     useEffect(() => {
-        // Mengambil data room berdasarkan ID dari API
         fetch(`https://be-kost.vercel.app/api/v1/room/${roomId}`)
           .then((response) => response.json())
           .then((data) => setRooms(data))
@@ -31,34 +32,30 @@ const Payment = () =>{
     
     const handlePayment = async () => {
         try {
-          const response = await fetch(`https://be-kost.vercel.app/api/v1/payment/${roomId}`, {
-            method: 'POST', // Metode permintaan bisa disesuaikan dengan API
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${token}`
-              // Headers tambahan sesuai kebutuhan API
-            },
-            // Body request bisa disesuaikan dengan kebutuhan API
-            // body: JSON.stringify({ key: 'value' }),
-          });
-          if (response.ok) {
-            const responseData = await response.json();
-    
-            // Mendapatkan URL dari respons API (disesuaikan dengan respons API)
-            const paymentUrl = responseData.data.token.redirect_url;
-            console.log(paymentUrl)
-    
-            // Melakukan redirect ke URL pembayaran
-            window.location.href = paymentUrl;
-          } else {
-            // Handle error jika diperlukan
-            const errorMessage = await response.json();
-            toast.error(errorMessage.message)
-            console.log(response);
-            console.error('Error performing payment:', errorMessage.message);
-          }
+            setIsLoading(true);
+            const response = await fetch(`https://be-kost.vercel.app/api/v1/payment/${roomId}`, {
+                method: 'POST', 
+                headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+                },
+            });
+            if (response.ok) {
+                setIsLoading(false);
+                const responseData = await response.json();
+        
+                const paymentUrl = responseData.data.token.redirect_url;
+                console.log(paymentUrl)
+        
+                window.location.href = paymentUrl;
+            } else {
+                setIsLoading(false);
+                const errorMessage = await response.json();
+                toast.error(errorMessage.message)
+                console.log(response);
+                console.error('Error performing payment:', errorMessage.message);
+            }
         } catch (error) {
-          // Handle error jika diperlukan
           console.error('Error:', error.message);
         }
     };
@@ -107,7 +104,7 @@ const Payment = () =>{
                         </div>
                     </div>
                     <div className="flex justify-center items-center mt-5">
-                        <button className="bg-red-500 text-white font-bold w-[180px] h-[40px] rounded-lg" onClick={handlePayment}>Bayar</button>
+                        <Button loading={isLoading} className="bg-red-500 text-white font-bold w-[180px] h-[40px] rounded-lg" label="Bayar" onClick={handlePayment}></Button>
                     </div>
                 </div>
             </div>

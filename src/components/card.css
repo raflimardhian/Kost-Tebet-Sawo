@@ -5,9 +5,14 @@
 .relative .arrow {
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
-  }
+}
   
   .relative:hover .arrow {
     opacity: 1;
-  }
+}
+
+.card-room {
+  position: relative;
+  z-index: 1; /* Atur nilai z-index sesuai kebutuhan */
+}
   

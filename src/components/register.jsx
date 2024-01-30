@@ -3,10 +3,8 @@ import { signupFields } from "../constants/form"
 import FormAction from "./formAction";
 import axios from "axios"
 import Input from "./input";
-// import { authService, storageService } from "../services";
 import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
-// import Cookies from 'universal-cookie';
 import { useNavigate } from 'react-router-dom';
 
 const fields = signupFields;
@@ -29,16 +27,12 @@ function Signup() {
     setSignupState({ ...signupState, [e.target.id]: e.target.value })
     if (e.target.name === "email") {
       setEmail(e.target.value);
-      // username = e.target.value;
     } else if (e.target.name === "username") {
       setUsername(e.target.value);
-      // password = e.target.value;
     } else if (e.target.name === "password") {
       setPassword(e.target.value);
-      // username = e.target.value;
     } else if (e.target.name === "telepon") {
       setTelepon(e.target.value);
-      // password = e.target.value;
     } else if (e.target.name === "address") {
         setAddress(e.target.value);
     } else if (e.target.name === "job") {
@@ -46,7 +40,6 @@ function Signup() {
     }
   };
 
-  //handle Register API Integration here
   const handleSubmit = async (e) => {
     e.preventDefault()
     setLoading(true)
