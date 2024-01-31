@@ -7,6 +7,7 @@ import Register from "./pages/Register"
 import Otp from "./pages/otp"
 import Payment from "./pages/Payment"
 import PaymentSuccess from './pages/paymentSuccess';
+import Profile from './pages/profile';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route path='/otp' element={<Otp/>}/>
           <Route path='/payment' element={<Payment/>}/>
           <Route path='/payment-success' element={<PaymentSuccess/>}/>
+          <Route path='/profile' element={<Profile/>}/>
         </Routes>
       </AuthProvider>
     </BrowserRouter>

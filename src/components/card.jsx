@@ -42,19 +42,19 @@ const Card = () => {
           .then(response => response.json())
           .then(data => setRooms(data))
           .catch(error => console.error('Error fetching data:', error));
-      }, []);
-    const handleNextImage = (index) => {
-        setCurrentImages((prev) => {
-            const updatedCurrentImages = [...prev];
-            updatedCurrentImages[index] = (prev[index] + 1) % rooms[index].image.length;
-            return updatedCurrentImages;
-        });
-        setIsHovered((prev) => {
-            const updatedIsHovered = [...prev];
-            updatedIsHovered[index] = false;
-            return updatedIsHovered;
-        });
-    };
+    }, []);
+    // const handleNextImage = (index) => {
+    //     setCurrentImages((prev) => {
+    //         const updatedCurrentImages = [...prev];
+    //         updatedCurrentImages[index] = (prev[index] + 1) % rooms[index].image.length;
+    //         return updatedCurrentImages;
+    //     });
+    //     setIsHovered((prev) => {
+    //         const updatedIsHovered = [...prev];
+    //         updatedIsHovered[index] = false;
+    //         return updatedIsHovered;
+    //     });
+    // };
 
 
     function formatRupiah(amount) {
@@ -79,53 +79,58 @@ const Card = () => {
     };
     
 
-    const handlePrevImage = (index) => {
-        setCurrentImages((prev) => {
-            const updatedCurrentImages = [...prev];
-            updatedCurrentImages[index] = (prev[index] - 1 + rooms[index].image.length) % rooms[index].image.length;
-            return updatedCurrentImages;
-        });
-        setIsHovered((prev) => {
-            const updatedIsHovered = [...prev];
-            updatedIsHovered[index] = false;
-            return updatedIsHovered;
-        });
-    };
+    // const handlePrevImage = (index) => {
+    //     setCurrentImages((prev) => {
+    //         const updatedCurrentImages = [...prev];
+    //         updatedCurrentImages[index] = (prev[index] - 1 + rooms[index].image.length) % rooms[index].image.length;
+    //         return updatedCurrentImages;
+    //     });
+    //     setIsHovered((prev) => {
+    //         const updatedIsHovered = [...prev];
+    //         updatedIsHovered[index] = false;
+    //         return updatedIsHovered;
+    //     });
+    // };
 
     return (
-        <div className='flex justify-center items-center'>
-            <div className='grid grid-cols-4 gap-14 '>
-                {rooms.map((room, index) => (
-                    <div className='border-solid rounded-lg mt-[50px] w-[300px] card-room'>
-                        <div key={index} className="relative h-64 w-full" onMouseEnter={() => setIsHovered((prev) => { const updatedIsHovered = [...prev]; updatedIsHovered[index] = true; return updatedIsHovered; })}
-                            onMouseLeave={() => setIsHovered((prev) => { const updatedIsHovered = [...prev]; updatedIsHovered[index] = false; return updatedIsHovered; })}>
-                            {room.image && room.image.length > 0 && (
+        <div>
+            <div className='flex justify-center items-center'>
+                <h1 className='mt-[50px] font-bold text-[30px] text-[#17415F]'>Daftar Kamar kami</h1>
+            </div>
+            <div className='flex justify-center items-center'>
+                <div className='grid grid-cols-4 gap-14 '>
+                    {rooms.map((room, index) => (
+                        <div className='border-solid rounded-lg mt-[50px] w-[300px] card-room border'>
+                            <div key={index} className="relative h-64 w-full" onMouseEnter={() => setIsHovered((prev) => { const updatedIsHovered = [...prev]; updatedIsHovered[index] = true; return updatedIsHovered; })}
+                                onMouseLeave={() => setIsHovered((prev) => { const updatedIsHovered = [...prev]; updatedIsHovered[index] = false; return updatedIsHovered; })}>
+
                                 <img
-                                src={room.image[currentImages[index]]?.imageUrl}
-                                alt={`Room ${index + 1}`}
+                                src={room.imageUrl}
+                                alt={`Room ${room.id}`}
                                 className="rounded-x-lg h-full w-full object-cover transition-transform duration-300 transform hover:scale-110"
                                 />
-                            )}
-                            {isHovered[index] && room.image && room.image.length > 1 && (
-                                <Arrow direction="left" onClick={() => handlePrevImage(index)} />
-                                )}
-                            {isHovered[index] && room.image && room.image.length > 1 && (
-                                <Arrow direction="right" onClick={() => handleNextImage(index)} />
-                            )}  
+                
+                                {/* {isHovered[index] && room.image && room.image.length > 1 && (
+                                    <Arrow direction="left" onClick={() => handlePrevImage(index)} />
+                                    )}
+                                {isHovered[index] && room.image && room.image.length > 1 && (
+                                    <Arrow direction="right" onClick={() => handleNextImage(index)} />
+                                )}   */}
+                            </div>
+                            <div className='mt-2 pb-4 text-[#17415F] ml-4 mr-2'>
+                                <h1 className='text-center font-bold'>No.{room.number}</h1>
+                                <h1 className='font-medium'>Kost Putra</h1>
+                                <p className="description overflow-hidden whitespace-nowrap overflow-ellipsis max-w-[300px] font-medium" >
+                                    {room.description} </p>
+                                <p className='price font-medium'>{formatRupiah(room.price)}/bulan</p>
+                                <p className='font-medium'>Sudah diisi oleh: {rooms[index]?.user?.profile?.name}</p>
+                            </div>
+                            <div className='flex justify-center items-center mb-4'>
+                                <button type='submit' className='bg-[#17415F] h-[40px] w-[130px] text-[white] font-bold rounded-md hover:bg-[#234a66]' onClick={() => handleButtonClick(room.id)} >Pesan</button>
+                            </div>
                         </div>
-                        <div className='mt-2 pb-4'>
-                            <h1 className='text-center font-bold'>No.{room.number}</h1>
-                            <h1 className='NO'>Kost Putra</h1>
-                            <p className="description overflow-hidden whitespace-nowrap overflow-ellipsis max-w-[300px]" >
-                                {room.description} </p>
-                            <p className='price'>{formatRupiah(room.price)}</p>
-                            <p>Sudah diisi oleh: {rooms[index]?.user?.profile?.name}</p>
-                        </div>
-                        <div className='flex justify-center items-center mb-4'>
-                            <button type='submit' className='bg-[#17415F] h-[40px] w-[130px] text-[white] font-bold rounded-md hover:bg-[#234a66]' onClick={() => handleButtonClick(room.id)} >Pesan</button>
-                        </div>
-                    </div>
-                ))}
+                    ))}
+                </div>
             </div>
         </div>
     );

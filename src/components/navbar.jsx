@@ -12,7 +12,6 @@ const Navbar = () =>{
     const { token, logout } = useAuth();
 
     const handleLogout = () => {
-        // Panggil fungsi logout untuk menghapus token
         logout();
     };
     return(
@@ -22,9 +21,11 @@ const Navbar = () =>{
         </Link>
         {token?(
             <div className="flex flex-row">
-                <div className="pt-7 mr-[160px]">
-                    <img src={profile} alt="" className="h-[25px]"/>
-                </div>
+                <Link to={'/profile'}>
+                    <div className="pt-7 mr-[160px]">
+                        <img src={profile} alt="" className="h-[25px]"/>
+                    </div>
+                </Link>
                 <Link to="/" onClick={handleLogout}>
                     <div className="flex flex-nowrap pt-7">
                         <img src={logout} alt="" className="h-[25px]"/>

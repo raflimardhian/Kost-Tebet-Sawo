@@ -7,6 +7,7 @@ import { useAuth } from '../constants/AuthContext';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Button } from "primereact/button";
+import Footer from "../components/footer";
 
 const Payment = () =>{
     const [rooms, setRooms] = useState([]);
@@ -83,11 +84,13 @@ const Payment = () =>{
                 pauseOnHover
                 theme="light" />
             <div className="flex justify-center items-center flex-col">
-                <h1 className="font-bold text-[20px] mb-2">Pembayaran Kamar</h1>
-                <div>
-                    <img src={logo} alt="room" className="w-[400px] h-[150px] object-cover rounded-t-lg" />
-                    <h1>{rooms.number}</h1>
-                    <h1>Description:{rooms.description} </h1>
+                <h1 className="font-bold text-[20px] mb-2 text-[#17415F]">Pembayaran Kamar</h1>
+                <div className="w-[500px] mb-[100px]">
+                    <img src={rooms.imageUrl} alt="room" className="w-[500px] h-[200px] object-cover rounded-t-lg" />
+                    <div className="flex justify-center">
+                        <h1 className="font-bold text-[#17415F]">{rooms.number}</h1>
+                    </div>
+                    <h1 className="text-[#17415F] font-medium mb-4">Description: {rooms.description} </h1>
                     <hr />
                     <div className="flex flex-row justify-center items-center gap-10">
                         <div>
@@ -103,11 +106,13 @@ const Payment = () =>{
                             <p>{formatRupiah(rooms.price + ppn)}</p>
                         </div>
                     </div>
+                    <hr />
                     <div className="flex justify-center items-center mt-5">
                         <Button loading={isLoading} className="bg-red-500 text-white font-bold w-[180px] h-[40px] rounded-lg" label="Bayar" onClick={handlePayment}></Button>
                     </div>
                 </div>
             </div>
+            <Footer/>
         </div>
     )
 }

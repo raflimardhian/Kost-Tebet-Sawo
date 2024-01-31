@@ -3,6 +3,9 @@ import Navbar from "../components/navbar"
 import logo from "../assets/logo.png"
 import Card from "../components/card"
 import { useAuth } from '../constants/AuthContext';
+import Facility from "../components/facility";
+import Maps from "../components/maps";
+import Footer from "../components/footer";
 
 
 
@@ -23,6 +26,9 @@ const Home = () =>{
                 </div>
             </div>
             <Card/>
+            <Facility/>
+            <Maps/>
+            <Footer/>
         </div>
     )
 }

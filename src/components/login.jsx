@@ -29,7 +29,6 @@ const Login = () => {
         }
     }
 
-    //Handle Login API Integration here
     const handleSubmit = async (e) => {
         e.preventDefault()
         setLoading(true)
