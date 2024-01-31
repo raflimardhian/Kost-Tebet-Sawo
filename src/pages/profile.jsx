@@ -155,136 +155,117 @@ function Akun() {
             <div className="pt-20 mx-6">
                 <div className="body">
                     <div className="text-left mt-6 sm:grid-cols-1 md:flex gap-2 mx-auto max-w-4xl">
-                    {/* <div className="flex-1 md:w-16 sm:w-full md:mx-auto sm:mx-6">
-                        <Link to={'/akun'} className="flex items-center font-semibold gap-2 text-binar-purple" >
-                        <div className="text-2xl text-binar-purple"><HiOutlinePencil /></div>
-                        Ubah Profil
-                        </Link>
-                        <Divider className="w-10" />
-                        <Link
-                        to={'/about'} className="flex items-center font-semibold gap-2 text-binar-purple">
-                        <div className="text-2xl text-binar-purple"> <HiOutlineUserGroup /> </div>
-                        About
-                        </Link>
-                        <Divider className="w-10" />
-                        <div
-                        onClick={handleLogout} className="flex items-center font-semibold gap-2 text-binar-purple cursor-pointer">
-                        <div className="text-2xl text-binar-purple"> <LuLogOut /> </div>
-                        Keluar
+                        <div className="flex-auto flex my-auto gap-2">
+                            <Card title="Ubah Data Profil" className="border-4 border-binar-purple shadow-none w-full rounded-xl ">
+                                <Panel header="Data Profil" className="pb-2 rounded-lg">
+                                    <div>
+                                        <label htmlFor="profile_picture" className="cursor-pointer">
+                                        {profile ? (
+                                            <img src={profile || URL.createObjectURL(profile)} alt="profile_picture" className="w-20 h-20 rounded-full max-w-20" />
+                                        ) : (
+                                            <img src={logo} alt="profile_picture" className="w-20 h-20 rounded-full max-w-20" />
+                                        )}
+                                            <input
+                                                type="file"
+                                                id="profile_picture"
+                                                className="hidden"
+                                                accept="image/*"
+                                                name="profile_picture"
+                                                onChange={(e)=>setProfile(e.target.files[0] || profile)}
+                                            />
+                                        </label>
+                                    </div>
+                                    <div className="text-sm font-bold justify-items-end text-binar-purple">
+                                    Nama Lengkap
+                                    </div>
+                                    <div className="col-12 flex-column justify-content-start pb-2">
+                                    <InputText
+                                        onChange={(e)=>setName(e.target.value)}
+                                        className="w-full border border-gray-300  focus:ring-[#8BC349] focus:border-[#8BC349] focus:z-10 rounded-md outline-none h-[35px] pl-[14px]"
+                                        placeholder={userData.name}
+                                        type="text"
+                                        id="name"
+                                        value={name}
+                                        name="name"
+                                    />
+                                    </div>
+                                    <div className="text-sm font-bold justify-items-end text-binar-purple">
+                                    Nomor Telepon
+                                    </div>
+                                    <div className="col-12 flex-column justify-content-start pb-2">
+                                    <InputText
+                                        onChange={(e)=>setPhone(e.target.value)}
+                                        className="w-full border border-gray-300 rounded-md outline-none h-[35px] pl-[14px]"
+                                        type="text"
+                                        placeholder={userData.phone}
+                                        id="phone_number"
+                                        value={phone}
+                                        name="phone_number"
+                                    />
+                                    </div>
+                                    <div className="text-sm font-bold justify-items-end text-binar-purple">
+                                    Kota asal
+                                    </div>
+                                    <div className="col-12 flex-column justify-content-start pb-2">
+                                    <InputText
+                                        onChange={(e)=>setCity(e.target.value)}
+                                        className="w-full border border-gray-300 rounded-md outline-none h-[35px] pl-[14px]"
+                                        type="text"
+                                        placeholder={userData.city}
+                                        id="city"
+                                        value={city}
+                                        name="city"
+                                    />
+                                    </div>
+                                    <div className="text-sm font-bold justify-items-end text-binar-purple">
+                                    Alamat
+                                    </div>
+                                    <div className="col-12 flex-column justify-content-start pb-2">
+                                    <InputText
+                                        onChange={(e)=>setAddress(e.target.value)}
+                                        className="w-full border border-gray-300 rounded-md outline-none h-[35px] pl-[14px]"
+                                        type="text"
+                                        placeholder={userData.address}
+                                        id="address"
+                                        value={address}
+                                        name="address"
+                                    />
+                                    </div>
+                                    <div className="text-sm font-bold justify-items-end text-binar-purple">
+                                    Pekerjaan
+                                    </div>
+                                    <div className="col-12 flex-column justify-content-start pb-2">
+                                    <InputText
+                                        onChange={(e)=>setJob(e.target.value)}
+                                        className="w-full border border-gray-300 rounded-md outline-none h-[35px] pl-[14px]"
+                                        type="text"
+                                        placeholder={userData.job}
+                                        id="job"
+                                        value={job}
+                                        name="job"
+                                    />
+                                    </div>
+                                </Panel>
+                                {/* <Toast ref={toast} /> */}
+                                <ToastContainer
+                                    position="bottom-center"
+                                    autoClose={2000}
+                                    hideProgressBar
+                                    newestOnTop={false}
+                                    closeOnClick
+                                    rtl={false}
+                                    pauseOnFocusLoss
+                                    draggable
+                                    pauseOnHover
+                                    theme="light"
+                                />
+                                <ConfirmDialog visible={visible} onHide={() => setVisible(false)} message="Anda Yakin Ingin Mengubahnya?"
+                                    header="Confirmation" icon="pi pi-exclamation-triangle" accept={handleSubmit} reject={reject} />
+                                <div className="w-full text-center">
+                                    <Button onClick={() => setVisible(true)} icon="pi pi-check" label="Simpan" className="w-[150px] h-[40px]" />
+                                </div>
+                            </Card>
                         </div>
-                        <Divider className="w-10" />
-                    </div> */}
-                    <div className="flex-auto flex my-auto gap-2">
-                        <Card title="Ubah Data Profil" className="border-4 border-binar-purple shadow-none w-full md:mx-auto sm:mx-6">
-                            <Panel header="Data Profil" className="pb-2 rounded-lg">
-                                <div>
-                                    <label htmlFor="profile_picture" className="cursor-pointer">
-                                    {profile ? (
-                                        <img src={profile || URL.createObjectURL(profile)} alt="profile_picture" className="w-20 h-20 rounded-full max-w-20" />
-                                    ) : (
-                                        <img src={logo} alt="profile_picture" className="w-20 h-20 rounded-full max-w-20" />
-                                    )}
-                                        <input
-                                            type="file"
-                                            id="profile_picture"
-                                            className="hidden"
-                                            accept="image/*"
-                                            name="profile_picture"
-                                            onChange={(e)=>setProfile(e.target.files[0] || profile)}
-                                        />
-                                    </label>
-                                </div>
-                                <div className="text-sm font-bold justify-items-end text-binar-purple">
-                                Nama Lengkap
-                                </div>
-                                <div className="col-12 flex-column justify-content-start pb-2">
-                                <InputText
-                                    onChange={(e)=>setName(e.target.value)}
-                                    className="w-full border border-gray-300 rounded-md outline-none h-[35px] pl-[14px]"
-                                    placeholder={userData.name}
-                                    type="text"
-                                    id="name"
-                                    value={name}
-                                    name="name"
-                                />
-                                </div>
-                                <div className="text-sm font-bold justify-items-end text-binar-purple">
-                                Nomor Telepon
-                                </div>
-                                <div className="col-12 flex-column justify-content-start pb-2">
-                                <InputText
-                                    onChange={(e)=>setPhone(e.target.value)}
-                                    className="w-full border border-gray-300 rounded-md outline-none h-[35px] pl-[14px]"
-                                    type="text"
-                                    placeholder={userData.phone}
-                                    id="phone_number"
-                                    value={phone}
-                                    name="phone_number"
-                                />
-                                </div>
-                                <div className="text-sm font-bold justify-items-end text-binar-purple">
-                                Kota asal
-                                </div>
-                                <div className="col-12 flex-column justify-content-start pb-2">
-                                <InputText
-                                    onChange={(e)=>setCity(e.target.value)}
-                                    className="w-full border border-gray-300 rounded-md outline-none h-[35px] pl-[14px]"
-                                    type="text"
-                                    placeholder={userData.city}
-                                    id="city"
-                                    value={city}
-                                    name="city"
-                                />
-                                </div>
-                                <div className="text-sm font-bold justify-items-end text-binar-purple">
-                                Alamat
-                                </div>
-                                <div className="col-12 flex-column justify-content-start pb-2">
-                                <InputText
-                                    onChange={(e)=>setAddress(e.target.value)}
-                                    className="w-full border border-gray-300 rounded-md outline-none h-[35px] pl-[14px]"
-                                    type="text"
-                                    placeholder={userData.address}
-                                    id="address"
-                                    value={address}
-                                    name="address"
-                                />
-                                </div>
-                                <div className="text-sm font-bold justify-items-end text-binar-purple">
-                                Pekerjaan
-                                </div>
-                                <div className="col-12 flex-column justify-content-start pb-2">
-                                <InputText
-                                    onChange={(e)=>setJob(e.target.value)}
-                                    className="w-full border border-gray-300 rounded-md outline-none h-[35px] pl-[14px]"
-                                    type="text"
-                                    placeholder={userData.job}
-                                    id="job"
-                                    value={job}
-                                    name="job"
-                                />
-                                </div>
-                            </Panel>
-                            {/* <Toast ref={toast} /> */}
-                            <ToastContainer
-                                position="bottom-center"
-                                autoClose={2000}
-                                hideProgressBar
-                                newestOnTop={false}
-                                closeOnClick
-                                rtl={false}
-                                pauseOnFocusLoss
-                                draggable
-                                pauseOnHover
-                                theme="light"
-                            />
-                            <ConfirmDialog visible={visible} onHide={() => setVisible(false)} message="Anda Yakin Ingin Mengubahnya?"
-                                header="Confirmation" icon="pi pi-exclamation-triangle" accept={handleSubmit} reject={reject} />
-                            <div className="w-full text-center">
-                                <Button onClick={() => setVisible(true)} icon="pi pi-check" label="Simpan" className="w-[150px] h-[40px]" />
-                            </div>
-                        </Card>
-                    </div>
                     </div>
                 </div>
             </div>

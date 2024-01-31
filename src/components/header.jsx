@@ -13,7 +13,7 @@ function Header({
             </h2>
             <p className="text-center text-sm text-gray-600 mt-5">
                 {paragraph} {' '}
-                <Link to={linkUrl} className="font-medium text-purple-600 hover:text-purple-500">
+                <Link to={linkUrl} className="font-medium text-[#8BC349] hover:text-[#17415F]">
                     {linkName}
                 </Link>
             </p>

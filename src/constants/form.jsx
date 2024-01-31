@@ -87,7 +87,7 @@ const signupFields = [
 
 const resetPasswordFields = [
     {
-        labelText: "Email",
+        labelText: "Masukkan Email Anda",
         labelFor: "email-address",
         id: "email-address",
         name: "email",

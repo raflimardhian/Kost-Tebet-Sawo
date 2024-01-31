@@ -8,6 +8,8 @@ import Otp from "./pages/otp"
 import Payment from "./pages/Payment"
 import PaymentSuccess from './pages/paymentSuccess';
 import Profile from './pages/profile';
+import ResetPassword from './pages/resetPassword';
+import InsertPassword from './pages/insertPassword';
 
 
 function App() {
@@ -22,6 +24,8 @@ function App() {
           <Route path='/payment' element={<Payment/>}/>
           <Route path='/payment-success' element={<PaymentSuccess/>}/>
           <Route path='/profile' element={<Profile/>}/>
+          <Route path='/reset-password' element={<ResetPassword/>}/>
+          <Route path='/insert-password' element={<InsertPassword/>}/>
         </Routes>
       </AuthProvider>
     </BrowserRouter>
