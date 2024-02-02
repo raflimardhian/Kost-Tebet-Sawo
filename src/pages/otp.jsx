@@ -8,12 +8,10 @@ import './otp.css'
 import Logo from '../assets/logo otp.png'
 import { Image } from 'primereact/image';
 import { useEffect } from 'react';
-import Header from '../components/header';
 import 'primeicons/primeicons.css';
 import axios from "axios"
 import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
-import Cookies from 'universal-cookie';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 export default function OTPRegister() {
@@ -153,7 +151,6 @@ export default function OTPRegister() {
                 Kirim ulang OTP dalam {seconds < 10 ? `${seconds}` : seconds} detik
               </h2>
             ) : (
-              // ketika detik sudah 0
               <Button onClick={resendOTP} label="Kirim Ulang" text severity='danger' />
             )}
           </div>
