@@ -62,7 +62,7 @@ const Payment = () =>{
     };
 
     
-    const ppn = rooms.price * 0.1;
+    const ppn = rooms.price * 0.11;
     return(
         <div>
             <Navbar></Navbar>
