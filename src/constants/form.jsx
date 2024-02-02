@@ -121,4 +121,27 @@ const resetPasswordBaruFields = [
     }
 ]
 
-export { loginFields, signupFields, resetPasswordFields, resetPasswordBaruFields }
+const loginAdminFields = [
+    {
+        labelText: "Email/No Telepon",
+        labelFor: "email-address",
+        id: "email-address",
+        name: "email",
+        type: "email",
+        autoComplete: "email",
+        isRequired: true,
+    },
+    {
+        isLogin: 'true',
+        labelText: "Password",
+        labelFor: "password",
+        id: "password",
+        name: "password",
+        type: "password",
+        autoComplete: "current-password",
+        isRequired: true,
+        placeholder: "Masukkan Password"
+    }
+]
+
+export { loginFields, signupFields, resetPasswordFields, resetPasswordBaruFields, loginAdminFields }

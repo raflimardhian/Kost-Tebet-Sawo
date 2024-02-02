@@ -10,6 +10,10 @@ import PaymentSuccess from './pages/paymentSuccess';
 import Profile from './pages/profile';
 import ResetPassword from './pages/resetPassword';
 import InsertPassword from './pages/insertPassword';
+import Dashboard from './pages/Admin';
+import AdminLogin from './pages/adminLogin';
+import UpdateProfile from './components/admin/updateProfile';
+import UpdateRoom from './components/admin/updateRoom';
 
 
 function App() {
@@ -26,6 +30,10 @@ function App() {
           <Route path='/profile' element={<Profile/>}/>
           <Route path='/reset-password' element={<ResetPassword/>}/>
           <Route path='/insert-password' element={<InsertPassword/>}/>
+          <Route path='/admin-home'  element={<Dashboard/>}/>
+          <Route path='/admin'  element={<AdminLogin/>}/>
+          <Route path='/update-profile' element={<UpdateProfile/>}/>
+          <Route path='/update-room' element={<UpdateRoom/>}/>
         </Routes>
       </AuthProvider>
     </BrowserRouter>
