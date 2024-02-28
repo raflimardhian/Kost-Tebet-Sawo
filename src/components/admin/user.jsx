@@ -26,7 +26,7 @@ const AdminUser = ({users, handleUpdate, handleDelete}) =>{
             key: 'action',
             render: (text, record) => (
               <Space size="middle">
-                <Button type="primary" onClick={() => handleUpdate(record)}>
+                <Button className='bg-blue-500' type="primary" onClick={() => handleUpdate(record)}>
                   Update
                 </Button>
                 <Button type="primary" danger onClick={() => handleDelete(record.id)}>

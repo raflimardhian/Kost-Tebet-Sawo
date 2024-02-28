@@ -3,11 +3,11 @@ import { Card, Row, Col, Button, Table, Space } from 'antd';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import AdminUser from "../components/admin/user";
-import AdminProfile from "../components/admin/profile";
-import AdminRoom from "../components/admin/room";
+import AdminProfile from "../components/admin/profile/profile";
+import AdminRoom from "../components/admin/room/room";
 import { useAuth } from '../constants/AuthContext';
 import logo from '../assets/logo navbar.png'
-import { rooms as AdminRoomData, AdminRoomColumns } from "../components/admin/room";
+import { rooms as AdminRoomData, AdminRoomColumns } from "../components/admin/room/room";
 import { jwtDecode } from 'jwt-decode';
 import {useNavigate} from 'react-router-dom';
 
@@ -78,8 +78,22 @@ const Dashboard = () => {
     };
       
     const handleDelete = (id) => {
-        console.log('Delete record with id:', id);
+        axios.delete(`https://be-kost.vercel.app/api/v1/room/${id}`)
+            .then(response => {
+                console.log('Delete successful');
+                // Filter out the deleted item from the rooms state
+                setRooms(rooms.filter(room => room.id !== id));
+            })
+            .catch(error => {
+                console.error('Error deleting record:', error);
+                // Handle error, display error message to user, etc.
+            });
     };
+    
+
+    const handleCreate =(record) =>{
+        console.log('Create record:', record);
+    }
     
 
     
@@ -94,6 +108,7 @@ const Dashboard = () => {
             <Space direction="vertical" style={{ display: 'flex' }}>
                 <AdminRoom
                     rooms={rooms}
+                    handleCreate={handleCreate}
                     handleUpdate={handleUpdate}
                     handleDelete={handleDelete}
                 />

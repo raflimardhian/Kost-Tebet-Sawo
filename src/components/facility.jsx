@@ -24,7 +24,7 @@ import makan from "../assets/Area/tempat makan.png"
 
 const Facility = () =>{
     return(
-        <div className="ml-[78px]">
+        <div className="ml-[78px] w-screen">
             <h1 className="mt-[50px] font-bold text-[30px] text-[#17415F]">Fasilitas</h1>
             <div>
                 <h1 className="text-[#17415F] font-bold mt-5 text-[18px]">Fasilitas Kamar</h1>

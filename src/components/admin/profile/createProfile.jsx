@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./updateProfile.css";
-import "../../index.css";
+import "../../../index.css";
 import "primeicons/primeicons.css";
 import "primereact/resources/primereact.min.css";
 import "react-toastify/dist/ReactToastify.css"
@@ -16,16 +16,16 @@ import axios from "axios";
 import { useClickOutside } from "primereact/hooks";
 import Cookies from 'universal-cookie';
 import { useNavigate, Link, useLocation } from 'react-router-dom';
-import { useAuth } from '../../constants/AuthContext';
+import { useAuth } from '../../../constants/AuthContext';
 import {jwtDecode} from 'jwt-decode';
-import logo from "../../assets/logo navbar.png"
-import back from "../../assets/back.svg"
+import logo from "../../../assets/logo navbar.png"
+import back from "../../../assets/back.svg"
 
 // import { useHistory } from 'react-router-dom';
 
 
 
-function UpdateForm() {
+function CreateProfile() {
     const [visible, setVisible] = useState(false);
     // const toast = useRef(null);
 
@@ -82,33 +82,10 @@ function UpdateForm() {
 
 
   
-    useEffect(() => {
-        const fetchUserData = async () => {
-        try {
-            const response = await axios.get(`https://be-kost.vercel.app/api/v1/profile/params/${roomId}`, {
-            headers: {
-                Authorization: `Bearer ${token}` // Menggunakan token dalam header permintaan
-            }
-            });
-            console.log(response);
-            setUserData(response.data.getProfile);
-            setName(response.data.getProfile.name)
-            setPhone(response.data.getProfile.phone)
-            setAddress(response.data.getProfile.address)
-            setCity(response.data.getProfile.city)
-            setJob(response.data.getProfile.job)
-            setProfile(response.data.getProfile.profile_picture)
-        } catch (error) {
-            console.error(error);
-        }
-        };
-        fetchUserData();
-    }, [token]);
-  
     const handleSubmit = async () => {
         try {
-            const response = await axios.put(
-            `https://be-kost.vercel.app/api/v1/profile/params/${roomId}`,
+            const response = await axios.post(
+            `https://be-kost.vercel.app/api/v1/profile/`,
             formData,
             {
                 headers: {
@@ -281,4 +258,4 @@ function UpdateForm() {
     );
 }
 
-export default UpdateForm;
+export default CreateProfile;

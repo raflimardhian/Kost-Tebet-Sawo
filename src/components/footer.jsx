@@ -3,7 +3,7 @@ import logo from "../assets/logo footer.png"
 
 const Footer = () =>{
     return(
-        <div className="w-[full] bg-[#17415F] h-[400px] mt-[70px]">
+        <div className="w-screen bg-[#17415F] h-[400px] mt-[70px] ">
             <div className="flex flex-row justify-center items-center">
                 <div>
                     <img src={logo} alt="footer" className="w-[250px]" />

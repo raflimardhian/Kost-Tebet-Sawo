@@ -49,6 +49,11 @@ const AdminProfile = ({profiles, handleUpdate, handleDelete}) =>{
             render: (text, record) => (
               <Space size="middle">
                 <Link to={`/update-profile?id=${record.id}`}>
+                    <Button className='bg-green-500' type="primary" onClick={() => handleUpdate(record)}>
+                    Add
+                    </Button>
+                </Link>
+                <Link to={`/update-profile?id=${record.id}`}>
                     <Button className='bg-blue-500' type="primary" onClick={() => handleUpdate(record)}>
                     Update
                     </Button>

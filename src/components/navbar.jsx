@@ -15,7 +15,7 @@ const Navbar = () =>{
         logout();
     };
     return(
-    <div class="h-[88px] bg-[#8BC349] grid grid-cols-2 gap-[900px]">
+    <div class="h-[88px] bg-[#8BC349] grid grid-cols-2 gap-[900px] w-screen">
         <Link to="/">
             <img src={logo} alt="logo" className="h-[88px] ml-[100px]" />
         </Link>

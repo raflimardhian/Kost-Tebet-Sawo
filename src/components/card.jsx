@@ -93,7 +93,7 @@ const Card = () => {
     // };
 
     return (
-        <div>
+        <div className='w-screen'>
             <div className='flex justify-center items-center'>
                 <h1 className='mt-[50px] font-bold text-[30px] text-[#17415F]'>Daftar Kamar kami</h1>
             </div>

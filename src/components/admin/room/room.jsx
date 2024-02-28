@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Card, Col, Button, Table, Space } from 'antd';
 import { Link } from 'react-router-dom';
 
-const AdminRoom = ({ rooms, handleUpdate, handleDelete }) => {
+const AdminRoom = ({ rooms,handleCreate, handleUpdate, handleDelete }) => {
   // ... (Sesuaikan fungsi formatRupiah jika diperlukan)
     function formatRupiah(amount) {
         return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(amount);
@@ -38,7 +38,7 @@ const AdminRoom = ({ rooms, handleUpdate, handleDelete }) => {
     },
     {
       title: 'User',
-      dataIndex: 'user',
+      dataIndex: 'user?.profile?.name',
       key: 'user',
     },
     {
@@ -54,6 +54,11 @@ const AdminRoom = ({ rooms, handleUpdate, handleDelete }) => {
       key: 'action',
       render: (text, record) => (
         <Space size="middle">
+            <Link to={'/create-room'}>
+              <Button className='bg-green-500' type="primary" onClick={() => handleCreate(record)}>
+                    Add
+              </Button>
+            </Link>
             <Link to={`/update-room?id=${record.id}`}>
               <Button className='bg-blue-500' type="primary" onClick={() => handleUpdate(record)}>
                   Update

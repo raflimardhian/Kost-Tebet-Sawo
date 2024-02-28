@@ -12,8 +12,9 @@ import ResetPassword from './pages/resetPassword';
 import InsertPassword from './pages/insertPassword';
 import Dashboard from './pages/Admin';
 import AdminLogin from './pages/adminLogin';
-import UpdateProfile from './components/admin/updateProfile';
-import UpdateRoom from './components/admin/updateRoom';
+import UpdateProfile from './components/admin/profile/updateProfile';
+import UpdateRoom from './components/admin/room/updateRoom';
+import CreateRoom from './components/admin/room/createRoom';
 
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
           <Route path='/admin'  element={<AdminLogin/>}/>
           <Route path='/update-profile' element={<UpdateProfile/>}/>
           <Route path='/update-room' element={<UpdateRoom/>}/>
+          <Route path='/create-room' element={<CreateRoom/>}/>
         </Routes>
       </AuthProvider>
     </BrowserRouter>

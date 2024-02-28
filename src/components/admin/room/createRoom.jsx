@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./updateRoom.css";
-import "../../index.css";
+import "../../../index.css";
 import "primeicons/primeicons.css";
 import "primereact/resources/primereact.min.css";
 import "react-toastify/dist/ReactToastify.css"
@@ -16,16 +16,16 @@ import axios from "axios";
 import { useClickOutside } from "primereact/hooks";
 import Cookies from 'universal-cookie';
 import { useNavigate, Link, useLocation } from 'react-router-dom';
-import { useAuth } from '../../constants/AuthContext';
+import { useAuth } from '../../../constants/AuthContext';
 import {jwtDecode} from 'jwt-decode';
-import logo from "../../assets/logo navbar.png"
-import back from "../../assets/back.svg"
+import logo from "../../../assets/logo navbar.png"
+import back from "../../../assets/back.svg"
 
 // import { useHistory } from 'react-router-dom';
 
 
 
-function UpdateRoom() {
+function CreateRoom() {
     const [visible, setVisible] = useState(false);
     // const toast = useRef(null);
 
@@ -80,38 +80,38 @@ function UpdateRoom() {
 
 
   
-    useEffect(() => {
-        const fetchUserData = async () => {
-        try {
-            const response = await axios.get(`https://be-kost.vercel.app/api/v1/room/${roomId}`, {
-            headers: {
-                Authorization: `Bearer ${token}` // Menggunakan token dalam header permintaan
-            }
-            });
-            console.log('ini response');
-            console.log(response);
-            setUserData(response.data);
-            setNumber(response.data.number)
-            setPrice(response.data.phone)
-            setDescription(response.data.address)
-            setImage(response.data.imageUrl)
-        } catch (error) {
-            console.error(error);
-        }
-        };
-        fetchUserData();
-    }, [token]);
+    // useEffect(() => {
+    //     const fetchUserData = async () => {
+    //     try {
+    //         const response = await axios.get(`https://be-kost.vercel.app/api/v1/room/`, {
+    //         headers: {
+    //             Authorization: `Bearer ${token}` // Menggunakan token dalam header permintaan
+    //         }
+    //         });
+    //         console.log('ini response');
+    //         console.log(response);
+    //         setUserData(response.data);
+    //         setNumber(response.data.number)
+    //         setPrice(response.data.phone)
+    //         setDescription(response.data.address)
+    //         setImage(response.data.imageUrl)
+    //     } catch (error) {
+    //         console.error(error);
+    //     }
+    //     };
+    //     fetchUserData();
+    // }, [token]);
   
     const handleSubmit = async () => {
         try {
-            const response = await axios.put(
-            `https://be-kost.vercel.app/api/v1/room/${roomId}`,
+            const response = await axios.post(
+            `https://be-kost.vercel.app/api/v1/room/`,
             formData,
-            {
-                headers: {
-                Authorization: `Bearer ${token}`,
-                },
-            },
+            // {
+            //     headers: {
+            //     Authorization: `Bearer ${token}`,
+            //     },
+            // },
             {   
                 imageUrl: image,
                 number: number,
@@ -121,7 +121,7 @@ function UpdateRoom() {
             },
         )
         .then(res => {
-            toast.success(`Success, Room telah terganti.`, {
+            toast.success(`Success, Room telah dibuat.`, {
             position: "bottom-center",
             autoClose: 2000,
             hideProgressBar: true,
@@ -132,9 +132,9 @@ function UpdateRoom() {
             theme: "colored",
             })
             
-            // setTimeout(() => {
-            //     nav("/profile")
-            // }, 1000);
+            setTimeout(() => {
+                nav("/create-room")
+            }, 1000);
         })
         } catch (error) {
             console.error(error);
@@ -158,22 +158,23 @@ function UpdateRoom() {
                     </Link>
                     <div className="text-left mt-6 sm:grid-cols-1 md:flex gap-2 mx-auto max-w-4xl">
                         <div className="flex-auto flex my-auto gap-2">
-                            <Card title="Ubah Data Room" className="border-4 border-binar-purple shadow-none w-full rounded-xl ">
+                            <Card title="Buat Room Baru" className="border-4 border-binar-purple shadow-none w-full rounded-xl ">
                                 <Panel header="Data Room" className="pb-2 rounded-lg">
                                     <div>
                                         <label htmlFor="imageUrl" className="cursor-pointer">
-                                        {image ? (
-                                            <img src={image || URL.createObjectURL(image)} alt="imageUrl" className="w-20 h-20 max-w-20" />
+                                        {image && image instanceof Blob ? (
+                                            <img src={URL.createObjectURL(image)} alt="imageUrl" className="w-20 h-20 max-w-20" />
                                         ) : (
                                             <img src={logo} alt="imageUrl" className="w-20 h-20 rounded-full max-w-20" />
                                         )}
+
                                             <input
                                                 type="file"
                                                 id="imageUrl"
                                                 className="hidden"
                                                 accept="image/*"
                                                 name="imageUrl"
-                                                onChange={(e)=>setImage(e.target.files[0] || image)}
+                                                onChange={(e)=>setImage(e.target.files[0])}
                                             />
                                         </label>
                                     </div>
@@ -184,7 +185,7 @@ function UpdateRoom() {
                                     <InputText
                                         onChange={(e)=>setNumber(e.target.value)}
                                         className="w-full border border-gray-300  focus:ring-[#8BC349] focus:border-[#8BC349] focus:z-10 rounded-md outline-none h-[35px] pl-[14px]"
-                                        placeholder={userData.number}
+                                        // placeholder={userData.number}
                                         type="text"
                                         id="number"
                                         value={number}
@@ -199,7 +200,7 @@ function UpdateRoom() {
                                         onChange={(e)=>setPrice(e.target.value)}
                                         className="w-full border border-gray-300 rounded-md outline-none h-[35px] pl-[14px]"
                                         type="number"
-                                        placeholder={userData.price}
+                                        // placeholder={userData.price}
                                         id="price"
                                         value={price}
                                         name="price"
@@ -213,7 +214,7 @@ function UpdateRoom() {
                                         onChange={(e)=>setDescription(e.target.value)}
                                         className="w-full border border-gray-300 rounded-md outline-none h-[35px] pl-[14px]"
                                         type="text"
-                                        placeholder={userData.description}
+                                        // placeholder={userData.description}
                                         id="description"
                                         value={description}
                                         name="description"
@@ -248,4 +249,4 @@ function UpdateRoom() {
     );
 }
 
-export default UpdateRoom;
+export default CreateRoom;
